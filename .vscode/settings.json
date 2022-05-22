@@ -1,0 +1,22 @@
+{
+  "files.associations": {
+    ".env.*": "dotenv"
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  /**
+   * Extensions
+   */
+  /** dbaeumer.vscode-eslint */
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  /** esbenp.prettier-vscode */
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.prettierPath": "./node_modules/prettier",
+  /** streetsidesoftware.code-spell-checker */
+  "cSpell.words": []
+}
