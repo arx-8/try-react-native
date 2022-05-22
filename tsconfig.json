@@ -20,6 +20,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+    "types": ["@types/jest"],
     "useUnknownInCatchVariables": true
   },
   "include": [
@@ -27,6 +28,7 @@
     ".prettierrc.js",
     "App.tsx",
     "babel.config.js",
+    "jest.config.js",
     "src"
   ]
 }

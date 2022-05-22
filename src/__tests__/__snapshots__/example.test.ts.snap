@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test ok 1`] = `
+Object {
+  "a": 0,
+  "b": "b1",
+}
+`;

@@ -41,6 +41,13 @@ const config = {
         "@typescript-eslint/explicit-module-boundary-types": 2,
       },
     },
+    {
+      extends: ["plugin:jest/recommended"],
+      files: ["*.test.ts", "*.test.tsx"],
+      rules: {
+        "jest/prefer-strict-equal": 2,
+      },
+    },
   ],
   parserOptions: {
     project: "./tsconfig.json",
