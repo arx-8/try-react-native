@@ -3,15 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "^16",
+    "node": "16",
     "npm": "0",
-    "yarn": "^1"
+    "yarn": "1"
   },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "expo start --android",
     "eject": "expo eject",
+    "eslint-print-config": "eslint --print-config App.tsx > misc/eslint-print-config.json",
     "ios": "expo start --ios",
+    "lint-dry:eslint": "eslint -c .eslintrc.js --max-warnings=0 .",
+    "lint-dry:format": "prettier --check .",
+    "lint-dry": "npm-run-all --parallel --continue-on-error lint-dry:* lint:tsc",
+    "lint:eslint": "eslint -c .eslintrc.js --fix .",
+    "lint:format": "prettier --write .",
+    "lint:tsc": "tsc --noEmit",
+    "lint": "npm-run-all --parallel --continue-on-error lint:*",
     "start": "expo start",
     "update-all": "npx --yes npm-check-updates@13.0.3 -u --reject \"/^(@types/react-native|@types/react|react|react-dom|react-native)$/\"",
     "web": "expo start --web"
@@ -26,8 +34,27 @@
   },
   "devDependencies": {
     "@babel/core": "7.18.0",
+    "@types/babel__core": "7.1.19",
+    "@types/eslint": "8.4.2",
+    "@types/prettier": "2.6.1",
     "@types/react": "17.0.39",
     "@types/react-native": "0.67.7",
+    "@typescript-eslint/eslint-plugin": "5.25.0",
+    "@typescript-eslint/parser": "5.25.0",
+    "eslint": "8.16.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.2.0",
+    "eslint-plugin-promise": "6.0.0",
+    "eslint-plugin-react": "7.30.0",
+    "eslint-plugin-react-hooks": "4.5.0",
+    "eslint-plugin-sort-destructure-keys": "1.4.0",
+    "eslint-plugin-sort-keys-fix": "1.1.2",
+    "eslint-plugin-typescript-sort-keys": "2.1.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.6.2",
+    "prettier-plugin-organize-imports": "2.3.4",
     "typescript": "4.6.4"
   }
 }
