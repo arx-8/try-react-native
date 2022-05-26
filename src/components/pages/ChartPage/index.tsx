@@ -1,4 +1,5 @@
-import { View } from "react-native"
+import { useNavigation } from "@react-navigation/native"
+import { Button, View } from "react-native"
 import { Victory } from "src/packages/victory"
 import { objectKeys } from "src/utils/object"
 
@@ -70,9 +71,18 @@ const processData = (data: Data): XYData[][] => {
 const xyDataList = processData(characterData)
 const maximaDatum = getMaxima(characterData)
 
-export const Sample = (): JSX.Element => {
+export const ChartPage = (): JSX.Element => {
+  const navigation = useNavigation()
+
   return (
     <View>
+      <Button
+        title="Go to HomePage"
+        onPress={() => {
+          navigation.navigate("home")
+        }}
+      />
+
       <VictoryChart
         polar
         theme={VictoryTheme.material}
