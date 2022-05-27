@@ -7,17 +7,30 @@ export const HomePage = (): JSX.Element => {
   return (
     <View style={styles.root}>
       <Text>HomePage</Text>
-      <Button
-        title="Go to ChartPage"
-        onPress={() => {
-          navigation.navigate("chart")
-        }}
-      />
+      <View style={styles.button}>
+        <Button
+          title="Go to ChartPage"
+          onPress={() => {
+            navigation.navigate("chart")
+          }}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Go to ListPage"
+          onPress={() => {
+            navigation.navigate("list")
+          }}
+        />
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  button: {
+    paddingTop: 8,
+  },
   root: {
     alignItems: "center",
     flex: 1,
