@@ -111,6 +111,8 @@ const config = {
     // note you must disable the base rule as it can report incorrect errors
     "no-useless-constructor": 0,
     "prefer-template": 2,
+    // Error occurred. Bug. Waiting for https://github.com/Intellicode/eslint-plugin-react-native/issues/270
+    "react-native/no-raw-text": 0,
     // Error occurred. Bug?: `Error: Fixable rules must set the `meta.fixable` property to "code" or "whitespace".`
     "react-native/sort-styles": 0,
     "react/react-in-jsx-scope": 0,

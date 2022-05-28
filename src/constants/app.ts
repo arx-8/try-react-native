@@ -1,7 +1,7 @@
 import { RootStackParamList } from "src/packages/@react-navigation"
-import { Equal, Expect } from "src/utils/type"
+import { Equal, Expect } from "src/packages/utils"
 
-export const pageNames = ["chart", "home", "list"] as const
+export const pageNames = ["chart", "home", "list", "sql"] as const
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

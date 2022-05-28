@@ -2,6 +2,7 @@ export type RootStackParamList = {
   chart: undefined | { chartType: "a" | "b" }
   home: undefined
   list: undefined
+  sql: undefined
 }
 
 declare global {

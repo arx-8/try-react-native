@@ -1,10 +1,8 @@
 /**
- * @see https://github.com/type-challenges/type-challenges/blob/f9b3bb0b5f7e9095be840fe3cba154f6f0566693/utils/index.d.ts
+ * for exhaustive check
  */
-export type Expect<T extends true> = T
-
-export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
-  T
->() => T extends Y ? 1 : 2
-  ? true
-  : false
+export const assertNever = (x: never): never => {
+  throw new Error(
+    `Unexpected value (\`${JSON.stringify(x)}\`). Should have been never.`
+  )
+}
