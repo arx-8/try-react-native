@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { Button, StyleSheet, Text, View } from "react-native"
+import { pageNames } from "src/constants/app"
 
 export const HomePage = (): JSX.Element => {
   const navigation = useNavigation()
@@ -7,22 +8,19 @@ export const HomePage = (): JSX.Element => {
   return (
     <View style={styles.root}>
       <Text>HomePage</Text>
-      <View style={styles.button}>
-        <Button
-          title="Go to ChartPage"
-          onPress={() => {
-            navigation.navigate("chart")
-          }}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Go to ListPage"
-          onPress={() => {
-            navigation.navigate("list")
-          }}
-        />
-      </View>
+
+      {pageNames.map((n) => {
+        return (
+          <View style={styles.button} key={n}>
+            <Button
+              title={`Go to ${n} page`}
+              onPress={() => {
+                navigation.navigate(n)
+              }}
+            />
+          </View>
+        )
+      })}
     </View>
   )
 }
