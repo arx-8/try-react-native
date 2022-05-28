@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
-import { Button, StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
+import { Button } from "react-native-paper"
 import { pageNames } from "src/constants/app"
 
 export const HomePage = (): JSX.Element => {
@@ -9,15 +10,18 @@ export const HomePage = (): JSX.Element => {
     <View style={styles.root}>
       <Text>HomePage</Text>
 
-      {pageNames.map((n) => {
+      {pageNames.map((name) => {
         return (
-          <View style={styles.button} key={n}>
+          <View style={styles.buttonWrapper} key={name}>
             <Button
-              title={`Go to ${n} page`}
+              uppercase={false}
               onPress={() => {
-                navigation.navigate(n)
+                navigation.navigate(name)
               }}
-            />
+              mode="contained"
+            >
+              Go to {name} page
+            </Button>
           </View>
         )
       })}
@@ -26,7 +30,7 @@ export const HomePage = (): JSX.Element => {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  buttonWrapper: {
     paddingTop: 8,
   },
   root: {
