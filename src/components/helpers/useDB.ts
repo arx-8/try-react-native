@@ -1,5 +1,6 @@
 import { openDatabase } from "expo-sqlite"
 import { useCallback, useEffect, useState } from "react"
+import { connectDB } from "src/data/db"
 import { assertNever } from "src/utils/type"
 
 type Classification = "meat" | "fish" | "vegetable"
@@ -35,12 +36,6 @@ const insertTestDataStatement = `--sql
     , ("fish", "mackerel")
     , ("fish", "mackerel")
     , ("fish", "mackerel")
-  ;
-`
-
-const selectIngredientsStatement = `--sql
-  SELECT *
-  FROM ingredients
   ;
 `
 
@@ -108,38 +103,21 @@ export const useDB = (): Returns => {
         case "not_opened":
           return
 
-        case "working":
+        case "working": {
           setLoading(true)
-          return new Promise((resolve, reject) => {
-            db.transaction((tx) => {
-              tx.executeSql(
-                selectIngredientsStatement,
-                [],
-                (_tx, result) => {
-                  const results = []
-                  for (let index = 0; index < result.rows.length; index++) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const row = result.rows.item(index)
-                    results.push(row)
-                  }
-                  setIngredients(results)
-                  setLoading(false)
-                  resolve()
-                },
-                (_tx, error) => {
-                  console.error(error)
-                  setLoading(false)
-                  reject(error)
-                  return false
-                }
-              )
-            })
-          })
+          const results = await connectDB()
+            .selectFrom("ingredients")
+            .selectAll()
+            .execute()
+          setIngredients(results)
+          setLoading(false)
+          return
+        }
 
         default:
           return assertNever(dbStatus)
       }
-    }, [db, dbStatus])
+    }, [dbStatus])
 
   return {
     ingredients,
