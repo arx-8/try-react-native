@@ -5,7 +5,7 @@ import { ChartPage } from "src/components/pages/ChartPage"
 import { HomePage } from "src/components/pages/HomePage"
 import { ListPage } from "src/components/pages/ListPage "
 import { SQLPage } from "src/components/pages/SQLPage"
-import { RootStackParamList } from "src/packages/@react-navigation"
+import { RootStackParamList } from "src/types/@react-navigation"
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 

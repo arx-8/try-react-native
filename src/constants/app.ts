@@ -1,5 +1,5 @@
-import { RootStackParamList } from "src/packages/@react-navigation"
-import { Equal, Expect } from "src/packages/utils"
+import { RootStackParamList } from "src/types/@react-navigation"
+import { Equal, Expect } from "src/types/utils"
 
 export const pageNames = ["chart", "home", "list", "sql"] as const
 

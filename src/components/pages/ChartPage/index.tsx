@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { Button, View } from "react-native"
-import { Victory } from "src/packages/victory"
+import { Victory } from "src/types/victory"
 import { objectKeys } from "src/utils/object"
 
 const {
