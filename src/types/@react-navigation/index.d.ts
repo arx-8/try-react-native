@@ -3,6 +3,7 @@ export type RootStackParamList = {
   index: undefined
   list: undefined
   sql: undefined
+  storage: undefined
 }
 
 declare global {

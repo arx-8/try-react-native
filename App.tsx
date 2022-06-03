@@ -1,10 +1,17 @@
-import { NavigationContainer } from "@react-navigation/native"
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { useMemo } from "react"
+import { useColorScheme } from "react-native"
 import { Provider as PaperProvider } from "react-native-paper"
 import { ChartPage } from "src/components/pages/ChartPage"
 import { IndexPage } from "src/components/pages/IndexPage"
 import { ListPage } from "src/components/pages/ListPage "
 import { SQLPage } from "src/components/pages/SQLPage"
+import { StoragePage } from "src/components/pages/StoragePage"
 import { RootStackParamList } from "src/types/@react-navigation"
 import { objectEntries } from "src/utils/object"
 
@@ -15,14 +22,21 @@ const screens: {
   chart: ChartPage,
   list: ListPage,
   sql: SQLPage,
+  storage: StoragePage,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App(): JSX.Element {
+  const colorScheme = useColorScheme()
+
+  const navigationTheme = useMemo(() => {
+    return colorScheme === "dark" ? DarkTheme : DefaultTheme
+  }, [colorScheme])
+
   return (
     <PaperProvider>
-      <NavigationContainer>
+      <NavigationContainer theme={navigationTheme}>
         <Stack.Navigator>
           <Stack.Screen name="index" component={IndexPage} />
           {objectEntries(screens).map(([name, component]) => {
