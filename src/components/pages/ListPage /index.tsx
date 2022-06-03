@@ -31,9 +31,9 @@ export const ListPage = (): JSX.Element => {
   return (
     <View style={styles.root}>
       <Button
-        title="Go to HomePage"
+        title="Go to IndexPage"
         onPress={() => {
-          navigation.navigate("home")
+          navigation.navigate("index")
         }}
       />
       <FlatList

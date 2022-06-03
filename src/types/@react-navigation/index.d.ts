@@ -1,6 +1,6 @@
 export type RootStackParamList = {
   chart: undefined | { chartType: "a" | "b" }
-  home: undefined
+  index: undefined
   list: undefined
   sql: undefined
 }

@@ -3,6 +3,11 @@ import { Button, View } from "react-native"
 import { Victory } from "src/types/victory"
 import { objectKeys } from "src/utils/object"
 
+/**
+ * copy of:
+ * @see https://formidable.com/open-source/victory/gallery/radar-chart/
+ */
+
 const {
   VictoryArea,
   VictoryChart,
@@ -77,9 +82,9 @@ export const ChartPage = (): JSX.Element => {
   return (
     <View>
       <Button
-        title="Go to HomePage"
+        title="Go to IndexPage"
         onPress={() => {
-          navigation.navigate("home")
+          navigation.navigate("index")
         }}
       />
 

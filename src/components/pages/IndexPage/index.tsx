@@ -1,14 +1,20 @@
 import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, Text, View } from "react-native"
 import { Button } from "react-native-paper"
-import { pageNames } from "src/constants/app"
+import { RootStackParamList } from "src/types/@react-navigation"
 
-export const HomePage = (): JSX.Element => {
+const pageNames: readonly Exclude<keyof RootStackParamList, "index">[] = [
+  "chart",
+  "list",
+  "sql",
+]
+
+export const IndexPage = (): JSX.Element => {
   const navigation = useNavigation()
 
   return (
     <View style={styles.root}>
-      <Text>HomePage</Text>
+      <Text>IndexPage</Text>
 
       {pageNames.map((name) => {
         return (
