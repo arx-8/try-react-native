@@ -5,7 +5,7 @@ import { useTodo } from "src/components/helpers/useTodo"
 import { color } from "src/components/styles/utils"
 
 export const StoragePage = (): JSX.Element => {
-  const { addTodo, deleteTodo, fetchTodoList, todoList } = useTodo()
+  const { addTodo, deleteTodo, fetchTodoList, loading, todoList } = useTodo()
   const [memo, setMemo] = useState("")
   const [done, setDone] = useState(false)
 
@@ -17,7 +17,7 @@ export const StoragePage = (): JSX.Element => {
     addTodo({
       done,
       memo,
-    })
+    }).catch((e) => console.log(e))
 
     // initialize
     setMemo("")
@@ -47,7 +47,13 @@ export const StoragePage = (): JSX.Element => {
         />
       </View>
       <View>
-        <Button uppercase={false} mode="contained" onPress={onSubmit}>
+        <Button
+          loading={loading}
+          disabled={loading}
+          uppercase={false}
+          mode="contained"
+          onPress={onSubmit}
+        >
           Submit
         </Button>
       </View>
@@ -68,9 +74,11 @@ export const StoragePage = (): JSX.Element => {
               <DataTable.Cell>{t.done ? "✅" : ""}</DataTable.Cell>
               <DataTable.Cell>
                 <Button
+                  loading={loading}
+                  disabled={loading}
                   mode="contained"
                   onPress={() => {
-                    deleteTodo(t.id)
+                    deleteTodo(t.id).catch((e) => console.log(e))
                   }}
                   icon="delete-forever"
                   color="red"
