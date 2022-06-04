@@ -1,35 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { StyleSheet, TextInput, View } from "react-native"
 import { Button, Checkbox, DataTable, Headline, Text } from "react-native-paper"
+import { useTodo } from "src/components/helpers/useTodo"
 import { color } from "src/components/styles/utils"
 
-type Todo = {
-  done: boolean
-  id: number
-  memo: string
-}
-
-const todoList: Todo[] = [
-  {
-    done: false,
-    id: 0,
-    memo: "my 1st memo",
-  },
-  {
-    done: true,
-    id: 1,
-    memo: "sleep well",
-  },
-]
-
 export const StoragePage = (): JSX.Element => {
+  const { addTodo, deleteTodo, fetchTodoList, todoList } = useTodo()
   const [memo, setMemo] = useState("")
   const [done, setDone] = useState(false)
 
+  useEffect(() => {
+    fetchTodoList().catch((e) => console.error(e))
+  }, [fetchTodoList])
+
   const onSubmit = (): void => {
-    // TODO submit
-    console.log(memo)
-    console.log(done)
+    addTodo({
+      done,
+      memo,
+    })
+
+    // initialize
     setMemo("")
     setDone(false)
   }
@@ -67,6 +57,7 @@ export const StoragePage = (): JSX.Element => {
           <DataTable.Title>ID</DataTable.Title>
           <DataTable.Title>Memo</DataTable.Title>
           <DataTable.Title>Done?</DataTable.Title>
+          <DataTable.Title>Action</DataTable.Title>
         </DataTable.Header>
 
         {todoList.map((t) => {
@@ -75,6 +66,18 @@ export const StoragePage = (): JSX.Element => {
               <DataTable.Cell>{t.id}</DataTable.Cell>
               <DataTable.Cell>{t.memo}</DataTable.Cell>
               <DataTable.Cell>{t.done ? "✅" : ""}</DataTable.Cell>
+              <DataTable.Cell>
+                <Button
+                  mode="contained"
+                  onPress={() => {
+                    deleteTodo(t.id)
+                  }}
+                  icon="delete-forever"
+                  color="red"
+                >
+                  Delete
+                </Button>
+              </DataTable.Cell>
             </DataTable.Row>
           )
         })}

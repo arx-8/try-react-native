@@ -8,3 +8,10 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
 >() => T extends Y ? 1 : 2
   ? true
   : false
+
+export type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>
