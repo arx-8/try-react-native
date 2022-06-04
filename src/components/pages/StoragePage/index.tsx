@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { StyleSheet, TextInput, View } from "react-native"
 import { Button, Checkbox, DataTable, Headline, Text } from "react-native-paper"
+import { NavigationOptions } from "src/components/helpers/NavigationOptions"
 import { useTodo } from "src/components/helpers/useTodo"
 import { color } from "src/components/styles/utils"
 
@@ -26,6 +27,9 @@ export const StoragePage = (): JSX.Element => {
 
   return (
     <View style={styles.root}>
+      <NavigationOptions
+        title={`Last rendered: ${new Date().toLocaleString()}`}
+      />
       <View>
         <Headline>TODO App</Headline>
       </View>
