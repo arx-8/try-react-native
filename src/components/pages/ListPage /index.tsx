@@ -31,10 +31,10 @@ export const ListPage = (): JSX.Element => {
   return (
     <View style={styles.root}>
       <Button
-        title="Go to IndexPage"
         onPress={() => {
           navigation.navigate("index")
         }}
+        title="Go to IndexPage"
       />
       <FlatList
         data={data}

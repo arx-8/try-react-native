@@ -25,13 +25,13 @@ export const IndexPage = (): JSX.Element => {
 
       {pageNames.map((name) => {
         return (
-          <View style={styles.buttonWrapper} key={name}>
+          <View key={name} style={styles.buttonWrapper}>
             <Button
-              uppercase={false}
+              mode="contained"
               onPress={() => {
                 navigation.navigate(name)
               }}
-              mode="contained"
+              uppercase={false}
             >
               Go to {name} page
             </Button>

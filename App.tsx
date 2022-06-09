@@ -38,9 +38,9 @@ export default function App(): JSX.Element {
     <PaperProvider>
       <NavigationContainer theme={navigationTheme}>
         <Stack.Navigator>
-          <Stack.Screen name="index" component={IndexPage} />
+          <Stack.Screen component={IndexPage} name="index" />
           {objectEntries(screens).map(([name, component]) => {
-            return <Stack.Screen key={name} name={name} component={component} />
+            return <Stack.Screen component={component} key={name} name={name} />
           })}
         </Stack.Navigator>
       </NavigationContainer>

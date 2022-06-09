@@ -82,18 +82,18 @@ export const ChartPage = (): JSX.Element => {
   return (
     <View>
       <Button
-        title="Go to IndexPage"
         onPress={() => {
           navigation.navigate("index")
         }}
+        title="Go to IndexPage"
       />
 
       <VictoryChart
-        polar
-        theme={VictoryTheme.material}
         domain={{
           y: [0, 1],
         }}
+        polar
+        theme={VictoryTheme.material}
       >
         <VictoryGroup
           colorScale={["gold", "orange", "tomato"]}
@@ -105,15 +105,20 @@ export const ChartPage = (): JSX.Element => {
           }}
         >
           {xyDataList.map((d, i) => {
-            return <VictoryArea key={i} data={d} />
+            // eslint-disable-next-line react/no-array-index-key
+            return <VictoryArea data={d} key={i} />
           })}
         </VictoryGroup>
 
         {objectKeys(maximaDatum).map((key, i) => {
           return (
             <VictoryPolarAxis
-              key={i}
+              axisValue={i + 1}
               dependentAxis
+              // eslint-disable-next-line react/no-array-index-key
+              key={i}
+              label={key}
+              labelPlacement="perpendicular"
               style={{
                 axis: { stroke: "none" },
                 axisLabel: { fontSize: 24, padding: 10 },
@@ -123,22 +128,19 @@ export const ChartPage = (): JSX.Element => {
                   strokeWidth: 0.25,
                 },
               }}
-              tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
-              labelPlacement="perpendicular"
-              axisValue={i + 1}
-              label={key}
               tickFormat={(t) => Math.ceil(t * maximaDatum[key])}
+              tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
               tickValues={[0.25, 0.5, 0.75]}
             />
           )
         })}
         <VictoryPolarAxis
           labelPlacement="parallel"
-          tickFormat={() => ""}
           style={{
             axis: { stroke: "none" },
             grid: { opacity: 0.5, stroke: "grey" },
           }}
+          tickFormat={() => ""}
         />
       </VictoryChart>
     </View>

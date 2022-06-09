@@ -37,26 +37,26 @@ export const StoragePage = (): JSX.Element => {
       <View style={styles.inputMemoView}>
         <Text>Memo:</Text>
         <TextInput
+          multiline
+          onChangeText={setMemo}
           style={styles.inputMemo}
           value={memo}
-          onChangeText={setMemo}
-          multiline
         />
       </View>
       <View style={styles.inputDoneView}>
         <Text>Done?:</Text>
         <Checkbox
-          status={done ? "checked" : "unchecked"}
           onPress={() => setDone(!done)}
+          status={done ? "checked" : "unchecked"}
         />
       </View>
       <View>
         <Button
-          loading={loading}
           disabled={loading}
-          uppercase={false}
+          loading={loading}
           mode="contained"
           onPress={onSubmit}
+          uppercase={false}
         >
           Submit
         </Button>
@@ -78,14 +78,14 @@ export const StoragePage = (): JSX.Element => {
               <DataTable.Cell>{t.done ? "✅" : ""}</DataTable.Cell>
               <DataTable.Cell>
                 <Button
-                  loading={loading}
+                  color="red"
                   disabled={loading}
+                  icon="delete-forever"
+                  loading={loading}
                   mode="contained"
                   onPress={() => {
                     deleteTodo(t.id).catch((e) => console.log(e))
                   }}
-                  icon="delete-forever"
-                  color="red"
                 >
                   Delete
                 </Button>
