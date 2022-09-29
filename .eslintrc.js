@@ -111,7 +111,22 @@ const config = {
     // note you must disable the base rule as it can report incorrect errors
     "no-useless-constructor": 0,
     "prefer-template": 2,
+    "react-hooks/exhaustive-deps": [
+      2,
+      {
+        additionalHooks: "(useLoading)",
+      },
+    ],
+    // Error occurred. Bug. Waiting for https://github.com/Intellicode/eslint-plugin-react-native/issues/270
+    "react-native/no-raw-text": 0,
+    // Error occurred. Bug?: `Error: Fixable rules must set the `meta.fixable` property to "code" or "whitespace".`
+    "react-native/sort-styles": 0,
+    "react/jsx-boolean-value": 2,
+    "react/jsx-sort-props": 2,
+    "react/jsx-uses-react": 0,
+    "react/no-array-index-key": 2,
     "react/react-in-jsx-scope": 0,
+    "react/self-closing-comp": 2,
     "sort-destructure-keys/sort-destructure-keys": 2,
     "sort-keys-fix/sort-keys-fix": 2,
     yoda: [2, "never", { onlyEquality: true }],

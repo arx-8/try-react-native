@@ -6,6 +6,11 @@
 const createConfig = (api) => {
   api.cache.forever()
   return {
+    env: {
+      production: {
+        plugins: ["react-native-paper/babel"],
+      },
+    },
     plugins: [
       [
         "module-resolver",

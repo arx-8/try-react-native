@@ -1,24 +1,49 @@
-import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
-import { Sample } from "src/Sample"
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { useMemo } from "react"
+import { useColorScheme } from "react-native"
+import { Provider as PaperProvider } from "react-native-paper"
+import { ChartPage } from "src/components/pages/ChartPage"
+import { IndexPage } from "src/components/pages/IndexPage"
+import { ListPage } from "src/components/pages/ListPage "
+import { SQLPage } from "src/components/pages/SQLPage"
+import { StoragePage } from "src/components/pages/StoragePage"
+import { RootStackParamList } from "src/types/@react-navigation"
+import { objectEntries } from "src/utils/object"
 
-export default function App(): JSX.Element {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Sample />
-    </View>
-  )
+const screens: {
+  // "index" is excluded because it is the screen that should be transitioned 1st.
+  [name in Exclude<keyof RootStackParamList, "index">]: () => JSX.Element
+} = {
+  chart: ChartPage,
+  list: ListPage,
+  sql: SQLPage,
+  storage: StoragePage,
 }
 
-const white = "#fff"
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    backgroundColor: white,
-    flex: 1,
-    justifyContent: "center",
-  },
-})
+export default function App(): JSX.Element {
+  const colorScheme = useColorScheme()
+
+  const navigationTheme = useMemo(() => {
+    return colorScheme === "dark" ? DarkTheme : DefaultTheme
+  }, [colorScheme])
+
+  return (
+    <PaperProvider>
+      <NavigationContainer theme={navigationTheme}>
+        <Stack.Navigator>
+          <Stack.Screen component={IndexPage} name="index" />
+          {objectEntries(screens).map(([name, component]) => {
+            return <Stack.Screen component={component} key={name} name={name} />
+          })}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
+  )
+}
