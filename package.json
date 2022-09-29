@@ -2,11 +2,6 @@
   "name": "try-react-native",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": "16",
-    "npm": "0",
-    "yarn": "1"
-  },
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "expo start --android",
@@ -15,11 +10,11 @@
     "ios": "expo start --ios",
     "lint-dry:eslint": "eslint -c .eslintrc.js --max-warnings=0 .",
     "lint-dry:format": "prettier --check .",
-    "lint-dry": "npm-run-all --parallel --continue-on-error lint-dry:* lint:tsc",
+    "lint-dry": "npm-run-all --parallel --continue-on-error 'lint-dry:*' lint:tsc",
     "lint:eslint": "eslint -c .eslintrc.js --fix .",
     "lint:format": "prettier --write .",
     "lint:tsc": "tsc --noEmit",
-    "lint": "npm-run-all --parallel --continue-on-error lint:*",
+    "lint": "npm-run-all --parallel --continue-on-error 'lint:*'",
     "start": "expo start",
     "test-ci": "jest --ci",
     "test": "jest --watch",
@@ -78,5 +73,6 @@
   },
   "resolutions": {
     "@types/react": "17.0.39"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }

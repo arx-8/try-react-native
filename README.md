@@ -17,3 +17,28 @@ yarn ios
 yarn android
 yarn web
 ```
+
+## Available scripts
+
+### Update all dependencies
+
+```s
+yarn upgrade-interactive
+```
+
+When updating the following packages, be careful of other deps.
+
+```sh
+# depending jest-expo
+@types/jest
+jest
+
+# depending expo
+@types/react
+@types/react-native
+react
+react-dom
+react-native
+react-native-safe-area-context
+react-native-screens
+```
